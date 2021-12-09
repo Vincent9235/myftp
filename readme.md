@@ -1,6 +1,6 @@
 # MYFTP
 Project realized by Vincent Laurens in B3CDGP at EFREI PARIS 
-MyFtp is a node compatible, FTP client and server, coded in JavaScript.
+MyFtp is a NodeJS compatible, FTP client and server, coded in JavaScript.
 
 ## Installation
 

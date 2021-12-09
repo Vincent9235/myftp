@@ -32,5 +32,5 @@ The client manages the following orders:
     QUIT: close the connection and stop the program
 
 ## License
-Craft with ❤️ by Vincent Laurens
+Craft with ❤️ by Vincent Laurens.
 You are free to use it 😉

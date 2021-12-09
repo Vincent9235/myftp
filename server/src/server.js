@@ -40,7 +40,7 @@ export function launch(port) {
           socket.write(`You are here: ${pwd()}\r\n`);
           break;
         case "CWD":
-          socket.write(cwd(args));
+          socket.write(`You are now here: ${cwd(args)}\r\n`);
           break;
         case "TYPE":
           socket.write("200 \r\n");

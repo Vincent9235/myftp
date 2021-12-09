@@ -1,0 +1,14 @@
+{
+    "Vincent": {
+        "name": "Vincent",
+        "password": "root"
+    },
+    "Dylan": {
+        "name": "Dylan",
+        "password": "bestdev"
+    },
+    "Simon": {
+        "name": "Simon",
+        "password": "Saumon"
+    }
+}

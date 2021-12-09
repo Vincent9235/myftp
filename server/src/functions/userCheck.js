@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 /**
  *Check if user name exists 
  * @param {string} name 
@@ -7,8 +9,7 @@
  **/
 export function userCheck(name, allSockets, socket) {
     let message = "User does not exist";
-    const fs = require('fs');
-    let rawdata = fs.readFileSync(`${__dirname}/../user.json`);
+    let rawdata = fs.readFileSync(`${__dirname}/../data/user.json`);
     let user = JSON.parse(rawdata);
     if (user[name] != null) {
         allSockets[socket.uid] = name;

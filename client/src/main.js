@@ -1,4 +1,3 @@
-import { SSL_OP_EPHEMERAL_RSA } from "constants";
 import { createConnection } from "net";
 import { createInterface } from "readline";
 
@@ -18,9 +17,11 @@ client.on("data", (data) => {
     isAuthenticated = true;
   }
 
+  //Connection
   if (status == 220) {
     currentCommand = "USER";
-    client.write("USER Vincent");
+    console.log("Please enter your user name (USER) ");
+    //client.write("USER Vincent");
     const rl = createInterface({
       input: process.stdin,
     });
@@ -29,8 +30,14 @@ client.on("data", (data) => {
     });
   };
 
-  if(status == 221){
+  //Disconnect
+  if (status == 221) {
     console.log("You will be disconnected.");
     process.exit();
+  }
+
+  process.stdout.write("> ");
+  if (status == 230 && currentCommand === "USER") {
+    isAuthenticated = true;
   }
 });

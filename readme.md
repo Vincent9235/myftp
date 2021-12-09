@@ -30,3 +30,7 @@ The client manages the following orders:
     PWD: display the name of the current directory of the server
     HELP: send helpful information to the client
     QUIT: close the connection and stop the program
+
+## License
+Craft with ❤️ by Vincent Laurens
+You are free to use it 😉

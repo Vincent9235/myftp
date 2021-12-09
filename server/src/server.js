@@ -1,9 +1,11 @@
 import { createServer } from "net";
-import { helpUser } from './helpUser';
-import { userCheck } from './userCheck';
-import { quit } from './quit';
-import { readDirectory } from './Directory';
-import { checkPasswdord } from './checkPassword';
+import { helpUser } from './functions/helpUser';
+import { userCheck } from './functions/userCheck';
+import { quit } from './functions/quit';
+import { readDirectory } from './functions/directory';
+import { checkPasswdord } from './functions/checkPassword';
+import { pwd } from './functions/pwd';
+import { cwd } from './functions/cwd';
 
 const allSockets = {};
 let idSocket = 0;
@@ -25,6 +27,9 @@ export function launch(port) {
         case "USER":
           socket.write(userCheck(args, allSockets, socket));
           break;
+        case "PASS":
+          socket.write(checkPasswdord(args, allSockets, socket));
+          break;
         case "SYST":
           socket.write("215 \r\n");
           break;
@@ -32,13 +37,16 @@ export function launch(port) {
           socket.write("211 \r\n");
           break;
         case "PWD":
-          socket.write("257 /users/dylan\r\n");
+          socket.write(`You are here: ${pwd()}\r\n`);
+          break;
+        case "CWD":
+          socket.write(cwd(args));
           break;
         case "TYPE":
           socket.write("200 \r\n");
           break;
         case "LIST":
-          socket.write("\nCurrent directory filenames: \n", readDirectory());
+          socket.write(`Current directory filenames: ${readDirectory()}\r\n`);
           break;
         case "HELP":
           helpUser(socket);
@@ -48,44 +56,20 @@ export function launch(port) {
           break;
 
         default:
-          console.log("502 Command not supported:", command, args);
+          console.log("502 Command not supported: ", command, args); //Send error to Server
+          socket.write("502 Command not supported: " + command + args); //Send error to Client
       }
     });
 
     socket.write("220 Hello World \r\n");
   });
 
+  //Errors management
+  server.on('error', (error) => {
+    console.log(error);
+  });
+
   server.listen(port, () => {
     console.log(`Server started at localhost:${port}`);
   });
 }
-
-
-/**
- *Check if user name exists
- * @param {string} name
- * @return string
- **/
-/* function checkuser(name) {
-  let answer = "User does not exist"
-  const fs = require('fs');
-  let rawdata = fs.readFileSync('D:/Téléchargements/my-ftp-server/server/user.json');
-  let user = JSON.parse(rawdata);
-  if (user[name] != null) {
-    answer = "User exists"
-  }
-  return answer
-} */
-
-
-/**
- * Check if the password is right
- * @param {string} password
- * @returns string
-
-function checkPassword(password) {
-  if (users[currentUser] == password)
-    return ("230 authentification succeeded");
-  return ("430 Authentification failed");
-}
-*/

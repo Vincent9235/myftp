@@ -13,6 +13,7 @@ npm install
 You have several choices to run, build, and start a transcrypted version of either the server or the client :
 ```
 npm run dev  
+npm run dev 
 npm run build 
 npm run start 
 ```

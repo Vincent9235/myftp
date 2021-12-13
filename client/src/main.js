@@ -21,7 +21,6 @@ client.on("data", (data) => {
   if (status == 220) {
     currentCommand = "USER";
     console.log("Please enter your user name (USER) ");
-    //client.write("USER Vincent");
     const rl = createInterface({
       input: process.stdin,
     });

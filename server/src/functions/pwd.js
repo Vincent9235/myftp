@@ -1,5 +1,5 @@
 /**
- * display the name of the current directory of the server
+ * Display the name of the current directory of the server
  * @returns process.cwd()
  */
 export function pwd(){

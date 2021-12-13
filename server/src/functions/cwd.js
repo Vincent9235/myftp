@@ -1,3 +1,7 @@
+/**
+ * Change the current directory of the server
+ * @param {*} path 
+ */
 export function cwd(path) {
     try {
         process.chdir(path.toString());

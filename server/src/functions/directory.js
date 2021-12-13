@@ -1,4 +1,5 @@
 import fs from 'fs';
+
 /**
  * Read files in current folder
  * @returns {string} filesList
